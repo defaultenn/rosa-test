@@ -15,7 +15,8 @@ namespace RosATest.Model.Entity {
         public enum StatusCodename
         {
             Ready,
-            WIP
+            WIP,
+            Rejected
         }
     }
 }
