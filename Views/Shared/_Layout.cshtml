@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RosATest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#6b7280'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        input, textarea {
+            border: 1px solid black;
+            border-radius: 4px;
+            padding: 8px 4px;
+        }
+
+        input[type="submit"] 
+        {
+            background-color: blue;
+            color: white;
+            font-weight: 800;
+            border-radius: 8px;
+            padding: 4px 6px;
+            cursor: pointer;
+        }
+
+        button, button[type="submit"]
+        {
+            background-color: blue;
+            color: white;
+            font-weight: 800;
+            border-radius: 8px;
+            padding: 4px 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 h-screen w-screen">
+    @RenderBody()
+</body>
+</html>

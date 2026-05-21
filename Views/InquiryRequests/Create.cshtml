@@ -1,0 +1,65 @@
+@using RosATest.ViewModels
+@model CreateInquiryRequestViewModel
+
+<div class="min-h-screen flex items-center justify-center">
+    <div class="container mx-auto p-4">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+
+            <h3>Запрос справки</h3>
+
+            <form method="post" asp-controller="InquiryRequests" asp-action="Create">
+                @Html.AntiForgeryToken()
+
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div>
+                        <strong>Появилась информация, о которой Вам стоит знать:</strong>
+                        <ul>
+                            @foreach (var modelState in ViewData.ModelState.Values)
+                            {
+                                foreach (var error in modelState.Errors)
+                                {
+                                    <li>@error.ErrorMessage</li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                }
+                
+                <div>
+                    @Html.LabelFor(m => m.InquiryTypeID)
+                    @Html.DropDownListFor(
+                        m => m.InquiryTypeID, 
+                        ViewBag.InquiryTypes as IEnumerable<SelectListItem>,
+                        "Выберите тип справки"
+                    )
+                    @Html.ValidationMessageFor(m => m.InquiryTypeID, "", new { @class = "text-red-400" })
+                </div>
+
+                <div>
+                    @Html.LabelFor(m => m.InquiryType)
+                    @Html.TextBoxFor(m => m.InquiryType)
+                    @Html.ValidationMessageFor(m => m.InquiryType, "", new { @class = "text-red-400" })
+                </div>
+
+                <div>
+                    @Html.LabelFor(m => m.Reason)
+                    @Html.TextAreaFor(m => m.Reason, new { 
+                        @class = "form-control", 
+                        rows = 4,
+                        placeholder = "Введите причину запроса"
+                    })
+                    @Html.ValidationMessageFor(m => m.Reason, "", new { @class = "text-red-400" })
+                </div>
+
+                <div>
+                    @Html.LabelFor(m => m.Count)
+                    @Html.EditorFor(m => m.Count)
+                    @Html.ValidationMessageFor(m => m.Count, "", new { @class = "text-red-400" })
+                </div>
+                
+                <button type="submit">Запросить</button>
+            </form>
+        </div>
+    </div>
+</div>

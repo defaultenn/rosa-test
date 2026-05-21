@@ -1,0 +1,43 @@
+@using RosATest.ViewModels
+@model LoginViewModel
+
+<div class="min-h-screen flex items-center justify-center">
+    <div class="container mx-auto p-4">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3>Вход</h3>
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div>
+                    <strong>Появилась информация, о которой Вам стоит знать:</strong>
+                    <ul>
+                        @foreach (var modelState in ViewData.ModelState.Values)
+                        {
+                            foreach (var error in modelState.Errors)
+                            {
+                                <li>@error.ErrorMessage</li>
+                            }
+                        }
+                    </ul>
+                </div>
+            }
+            <form method="post" asp-controller="User" asp-action="Login">
+                @Html.AntiForgeryToken()
+                
+                
+                <div>
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email)
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-red-400" })
+                </div>
+                
+                <div>
+                    @Html.LabelFor(m => m.Password)
+                    @Html.TextBoxFor(m => m.Password)
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-red-400" })
+                </div>
+                
+                <button type="submit">Войти</button>
+            </form>
+        </div>
+    </div>
+</div>
