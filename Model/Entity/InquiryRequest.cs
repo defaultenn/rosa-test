@@ -6,12 +6,12 @@ namespace RosATest.Model.Entity {
         [Key]
         public int ID { get; set; }
 
-        public DateTime CreatedAt {get;} = DateTime.UtcNow;
+        public DateTime CreatedAt {get; set;} = DateTime.UtcNow;
 
         public uint Count {get; set;}
 
         [MaxLength(100)]
-        public string Reason {get; set;} = "";
+        public string Reason {get; set;}
 
         public int UserID {get; set;}
 
