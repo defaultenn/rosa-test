@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using RosATest.Services;
 
 class Program
 {
@@ -11,6 +12,8 @@ class Program
             options.UseSqlite("Data Source=app.db")
         );
 
+        builder.Services.AddScoped<IUserService, UserService>();
+        builder.Services.AddScoped<IInquiryRequestService, InquiryRequestService>();
         builder.Services
             .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
